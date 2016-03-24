@@ -113,11 +113,11 @@ Ceph 把物件映射到放置群組（PG），PG 是一種邏輯的物件 Pool �
 當 Client 在綁定某個 Monitor 時，會先取得最新的 Cluster map 副本，該 map 可讓 Client 端知道叢集有多少 Monitor、OSD 與 MDS。但是無法知道要存取的物件位置。
 
 在 Ceph 中，物件的位置是透過計算得知的。因此 Client 只需要傳入 Object id 與 Pool 即可知道物件位置。當 Client 需要有名稱物件（如 mysql、archive 等）時，Ceph 會用物件名稱來計算 PG（是一個 Hash value）、 OSD 編號與 Pool。流程如下：
-1. Client 輸入 pool id 與 object id（e.g., pool='vms', object id='instance-1'）
-2. CRUSH 取得 object id，並進行 Hash 取得值
-3. CRUSH 在以 OSD 數量對 Hash value 進行 mod 運算，來取得 pg id（e.g., 58）
-4. CRUSH 再透過取得 pool name 來取得 pool id（e.g., 'vms' = '4'）
-5. CRUSH 在把 pool id 加到 pg id 前面（e.g, 4.58）
+* Client 輸入 pool id 與 object id（e.g., pool='vms', object id='instance-1'）
+* CRUSH 取得 object id，並進行 Hash 取得值
+* CRUSH 在以 OSD 數量對 Hash value 進行 mod 運算，來取得 pg id（e.g., 58）
+* CRUSH 再透過取得 pool name 來取得 pool id（e.g., 'vms' = '4'）
+5* CRUSH 在把 pool id 加到 pg id 前面（e.g, 4.58）
 
 透過計算物件位置的方式，改善了傳統查詢定位的效能問題。CRUSH 演算法讓 Client 計算物件應該存放到哪裡，並連接該 Primary OSD 進行物件儲存與檢索。
 
