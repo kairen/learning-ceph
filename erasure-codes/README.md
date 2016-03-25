@@ -44,6 +44,7 @@ rados --pool ecpool get NYAN -
 ```NYAN``` 物件將被切割為三個（K = 3）與兩個額外的chunks將被建立（M = 2）。M 值定義了多少個OSD能在同時損失時，也不會失去任合資料。```ruleset-failure-domain=rack ```將建立一個 CRUSH 的 ```ruleset``` 來確保在同一個機架上沒有兩個chunks。
 
 ![ECA](images/eca.png)
+
 更多的資訊能夠在[Erasure code profiles](http://docs.ceph.com/docs/master/rados/operations/erasure-code-profile/)文件找到。
 
 ## Erasure coded pool and Cache tiering
@@ -76,4 +77,3 @@ rbd --pool ecpool create --size 10 myvolume
 * [ISA erasure code plugin](http://ceph.com/docs/master/rados/operations/erasure-code-isa/)
 * [Locally repairable erasure code plugin](http://ceph.com/docs/master/rados/operations/erasure-code-lrc/)
 * [SHEC erasure code plugin](http://ceph.com/docs/master/rados/operations/erasure-code-shec/)
-
