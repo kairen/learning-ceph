@@ -1,5 +1,5 @@
 # Ceph Nova 整合
-首先在```Controller```與```Compute```上安裝 Ceph：
+首先在```Controller```與```Compute```上安裝 Ceph，並將 conf 檔推給串接節點：
 ```sh
 $ ceph-deploy install <node>
 ```
@@ -70,11 +70,13 @@ log file = /var/log/qemu/qemu-guest-$pid.log
 rbd concurrent management ops = 20
 
 [client.cinder]
-keyring= /etc/ceph/client.cinder.keyring
+keyring = /etc/ceph/client.cinder.keyring
+
 [client.cinder-backup]
-keyring= /etc/ceph/client.cinder-backup.keyring
+keyring = /etc/ceph/client.cinder-backup.keyring
+
 [client.glance]
-keyring= /etc/ceph/client.glance.keyring
+keyring = /etc/ceph/client.glance.keyring
 ```
 > 也可以在```deploy 節點```修改完後，使用```ceph-deploy --overwrite-conf config push <host>```來 push。
 

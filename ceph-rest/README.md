@@ -14,7 +14,7 @@ public addr = 0.0.0.0:5100
 restapi base url = /api/v1
 # 加入以上
 ```
-####開啟ceph-rest-api
+#### 開啟 ceph-rest-api
 ```sh
 ceph-rest-api -n client.restapi
 ```
@@ -35,7 +35,7 @@ echo "deb http://download.ceph.com/calamari/1.3.1/ubuntu/trusty trusty main" | s
 sudo apt-get update
 ```
 
-# Ceph Calamari Server 
+# Ceph Calamari Server
 
 #### Installing Diamond
 Install diamond follow below：
@@ -49,7 +49,7 @@ Install server and client follow below：
 sudo apt-get install calamari-server calamari-clients
 ```
 
-#### Initialization Server 
+#### Initialization Server
 ```sh
 sudo calamari-ctl initialize
 ```
@@ -76,5 +76,3 @@ sudo service diamond restart
 ## 參考
 * [Grafana+Diamond+Graphite](http://www.qingpingshan.com/rjbc/qt/27348.html)
 * [Ceph calamari](http://www.cnblogs.com/bodhitree/p/5035325.html)
-
-
