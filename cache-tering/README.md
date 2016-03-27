@@ -5,6 +5,7 @@ Cache tiering需要透過一個```高速/昂貴```的儲存裝置（SSD）組成
 ```Ceph objecter```處理物件該往哪裡儲存，```Tiering agent```則處理何時從```cache```中，將物件flush到後台儲存層。所以```cache tier```與```backing storage tier```對Ceph Client來說是完全透明的。
 
 ![cache-tiering](images/cache-tiering.png)
+
 Cache tiering agent自動處理```cache tier```與```backing storage tier```之間的資料搬移。但是管理可以設置這些```搬移規則``，主要有兩種情況：
 * **Writeback Mode**：當管理員把```cache tier```設置為``` writeback mode```時，Ceph Client會資料寫入cache tier並接收來自cache tier發送的ACK。隨著時間的推移，寫入到cache tier中的資料會搬移到storage tier並從cache tier刷新掉。從概念上來說cache tier位於backing storage tier的前面。當Ceph Client需要要讀取位於storage tier的資料時，cache tiering agent會把這些資料搬移到cache tier，然後再送往Ceph Client。此後，Ceph Client將與caceh tier進行I/O操作，直到資料不再被讀寫。此模式對於```易變資料（熱資料）```來說較為理想（如照片/視訊串流、事物資料等）。
 
