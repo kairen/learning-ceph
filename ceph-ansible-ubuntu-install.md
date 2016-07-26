@@ -135,7 +135,9 @@ devices:
   become: True
   roles:
   - ceph-mds
-
+```
+與
+```yml
 - hosts: rgws
   become: True
   roles:
