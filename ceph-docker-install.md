@@ -92,6 +92,7 @@ ceph/daemon osd
 檢查建立無誤，透過以下指令檢查：
 ```sh
 $ docker exec -ti osd1 df | grep "osd"
+/dev/vdb1                           26098208   37616  26060592   1% /var/lib/ceph/osd/ceph-0
 ```
 
 當建立完成三個 OSD 時，可以在 MON 檢查 PG 是否無誤：
@@ -109,7 +110,7 @@ cluster 2c254496-e948-4abb-a6dc-9aea41bbb56a
 ```
 
 ### RGW 部署
-當完成一個 RAODS(MON+OSD)從及後，即可建立物件儲存閘道(RAODS Gateway)提供 S3 與 Swift 相容的 API，來儲存檔案到儲存叢集中，一個 RGW 容器建立如下所示：
+當完成一個 RAODS(MON+OSD)叢集後，即可建立物件儲存閘道(RAODS Gateway)提供 S3 與 Swift 相容的 API，來儲存檔案到儲存叢集中，一個 RGW 容器建立如下所示：
 ```sh
 $ docker run -d --net=cluster-net \
 -v ${DIR}/lib/ceph/:/var/lib/ceph/ \
