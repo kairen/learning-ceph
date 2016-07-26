@@ -41,6 +41,7 @@ Ceph 生態系統可以大致劃分為四部分（圖1）：
 了解 Ceph 概念架構後，我們來探討另一個層次，了解在 Ceph 中實現的主要元件。 Ceph 和傳統檔案系統之間的重要差異之一，就是智能部分都用在了生態環境，而不是檔案系統本身。
 
 ![architecture](images/architecture.png)
+
 圖中顯示了一個簡單的Ceph生態系統。Ceph Client 是 Ceph 檔案系統的用戶。Ceph Metadata Daemon 提供了 metadata 伺服器，而 Ceph Object Storage Daemon 提供了實際儲存（對資料和 metadata 兩者）。最後 Ceph Monitor 提供了叢集管理。要注意的是 Ceph 客戶，物件儲存端點，metadata 伺服器（根據檔案系統的容量）可以有許多，而且至少有一對冗餘的監視器。那麼這個檔案系統是如何分散的呢？
 
 ### Ceph Client
