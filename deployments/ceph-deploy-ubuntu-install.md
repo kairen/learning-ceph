@@ -1,7 +1,7 @@
-# Ceph Deploy Ubuntu 叢集安裝
+# Deploy Ceph Using ceph-deploy
 本節將介紹如何透過 [ceph-deploy](https://github.com/ceph/ceph-deploy) 工具安裝一個測試的 Ceph 環境，一個最簡單的 Ceph 儲存叢集至少要```一個 Monitor```與```三個 OSD```。而 MDS 則是當使用到 CephFS 的時候才需要部署。
 
-![](images/Ceph-topo.jpg)
+![](images/ceph-topo.jpg)
 
 ## 環境準備
 在開始部署 Ceph 叢集之前，我們需要在每個節點做一些基本的準備，來確保叢集安裝的過程是流暢的，本次安裝會擁有 6 台節點，叢集拓樸圖如下所示：
