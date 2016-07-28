@@ -1,6 +1,5 @@
-# Ceph Ansible Ubuntu 叢集安裝
+# Deploy Ceph Using Ansible
 本節將介紹如何透過 [ceph-ansible](https://github.com/ceph/ceph-ansible) 工具安裝一個測試的 Ceph 環境，一個最簡單的 Ceph 儲存叢集至少要```一個 Monitor```與```三個 OSD```。而 MDS 則是當使用到 CephFS 的時候才需要部署。
-
 
 ## 節點配置
 本安裝將使用四台虛擬機器作為部署主機，虛擬機器採用 OpenStack，其規格為以下：
