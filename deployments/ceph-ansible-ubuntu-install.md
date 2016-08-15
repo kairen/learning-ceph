@@ -63,7 +63,7 @@ mon
 osd[1:3]
 ```
 > 若要安裝 rgw 與 mds 的話，可再添加以下：
-```
+```sh
 [rgws]
 mon
 
@@ -82,7 +82,7 @@ $ ansible all -m ping
 ```
 
 ## 部署 Ansible Ceph 叢集
-首先在```mon```節點透過 git 來下載 ceph-ansible 專案：
+首先在`mon`節點透過 git 來下載 ceph-ansible 專案：
 ```sh
 $ git clone https://github.com/ceph/ceph-ansible.git
 $ cd ceph-ansible
