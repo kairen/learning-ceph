@@ -66,7 +66,6 @@ osd[1:3]
 ```sh
 [rgws]
 mon
-
 [mdss]
 mon
 ```
