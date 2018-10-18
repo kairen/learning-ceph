@@ -5,3 +5,4 @@ Ceph 分散式檔案系統是近年來隨著 OpenStack 雲端平台，而慢慢�
 * [Deploy Ceph Using ceph-deploy](ceph-deploy-ubuntu-install.md)
 * [Deploy Ceph Using Ansible](ceph-ansible-ubuntu-install.md)
 * [Deploy Ceph Using Docker](ceph-docker-install.md)
+* [Deploy Ceph Using terraform](https://github.com/MalloZup/ceph-open-terrarium)
