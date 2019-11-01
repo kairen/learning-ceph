@@ -1,6 +1,6 @@
 
 # Ceph
-Ceph 提供了``` Ceph 物件儲存```以及```Ceph 區塊裝置```，除此之外 Ceph 也提供了自身的```Ceph 檔案系統```，所有的 Ceph 儲存叢集的部署都開始於 Ceph 各節點，透過網路與 Ceph 的叢集溝通。最簡單的 Ceph 儲存叢集至少要建立一個 Monitor 與兩個 OSD（Object storage daemon），但是當需要運行 Ceph 檔案系統時，就需要再加入Metadata伺服器。
+Ceph 提供了```Ceph 物件儲存```以及```Ceph 區塊裝置```，除此之外 Ceph 也提供了自身的```Ceph 檔案系統```，所有的 Ceph 儲存叢集的部署都開始於 Ceph 各節點，透過網路與 Ceph 的叢集溝通。最簡單的 Ceph 儲存叢集至少要建立一個 Monitor 與兩個 OSD（Object storage daemon），但是當需要運行 Ceph 檔案系統時，就需要再加入Metadata伺服器。
 
 ![Ceph](images/ceph.jpeg)
 
@@ -8,12 +8,12 @@ Ceph 提供了``` Ceph 物件儲存```以及```Ceph 區塊裝置```，除此之�
 開發檔案系統是一種複雜的投入，但是如果能夠準確地解決問題的話，則擁有著不可估量的價值。我們可以把 Ceph 的目標可以簡單定義為以下：
 
 * **容易擴充到 [PB 級別](http://en.wikipedia.org/wiki/Petabyte)的儲存容量**
-* **在不同負載情況下的高效能（每秒輸入/輸出操作數[IPOS]、帶寬）**
+* **在不同負載情況下的高效能（每秒輸入/輸出操作數[IOPS]、帶寬）**
 * **高可靠性**
 
 但這些目標彼此間相互矛盾(例如:可擴充性會減少或阻礙效能，或影響可靠性)。 Ceph 開發了一些有趣的概念(例如**動態 metadata 分區**、**資料分散**、**複製**)。
 
-Ceph 的設計也集成了**容錯性**來防止**單一節點故障問題（SOPF）**，並假設，大規模 （PB 級）中儲存的故障是一種常態，而非異常。最後，它的設計沒有假設特定的工作負荷，而是包含了可變的分散式工作負荷的適應能力，從而提供最佳的效能。它以[POSIX](http://zh.wikipedia.org/wiki/POSIX) 兼容為目標完成這些工作，允許它透明的部署於那些依賴於 POSIX 語義上現有的應用(通過Ceph增強功能)。最後，Ceph 是開源分散式儲存和 Linux 主流核心的一部分。
+Ceph 的設計也集成了**容錯性**來防止**單一節點故障問題（SPOF）**，並假設，大規模 （PB 級）中儲存的故障是一種常態，而非異常。最後，它的設計沒有假設特定的工作負荷，而是包含了可變的分散式工作負荷的適應能力，從而提供最佳的效能。它以[POSIX](http://zh.wikipedia.org/wiki/POSIX) 兼容為目標完成這些工作，允許它透明的部署於那些依賴於 POSIX 語義上現有的應用(通過Ceph增強功能)。最後，Ceph 是開源分散式儲存和 Linux 主流核心的一部分。
 
 ![完整架構](images/stack.png)
 
@@ -42,7 +42,7 @@ Ceph 生態系統可以大致劃分為四部分（圖1）：
 
 ![architecture](images/architecture.png)
 
-圖中顯示了一個簡單的Ceph生態系統。Ceph Client 是 Ceph 檔案系統的用戶。Ceph Metadata Daemon 提供了 metadata 伺服器，而 Ceph Object Storage Daemon 提供了實際儲存（對資料和 metadata 兩者）。最後 Ceph Monitor 提供了叢集管理。要注意的是 Ceph 客戶，物件儲存端點，metadata 伺服器（根據檔案系統的容量）可以有許多，而且至少有一對冗餘的監視器。那麼這個檔案系統是如何分散的呢？
+圖中顯示了一個簡單的 Ceph 生態系統。Ceph Client 是 Ceph 檔案系統的用戶。Ceph Metadata Daemon 提供了 metadata 伺服器，而 Ceph Object Storage Daemon 提供了實際儲存（對資料和 metadata 兩者）。最後 Ceph Monitor 提供了叢集管理。要注意的是 Ceph 客戶，物件儲存端點，metadata 伺服器（根據檔案系統的容量）可以有許多，而且至少有一對冗餘的監視器。那麼這個檔案系統是如何分散的呢？
 
 ### Ceph Client
 因為Linux顯示檔案系統的一個共有介面（通過虛擬檔案系統交換機[VFS]），Ceph 的用戶透視圖就是透明的。然而管理者的透視圖肯定是不同的，考慮到很多伺服器會包含儲存系統這一潛在因素（要查看更多建立的 Ceph 叢集的資訊，可看參考資料部分）。從用戶的角度來看，存取大容量的儲存系統，卻不知道下面聚合成一個大容量的**儲存池**的 metadata 伺服器、監視器、還有獨立的對象儲存裝置。用戶只是簡單地看到一個安裝點，在這點上可以執行標准檔案 I/O。
